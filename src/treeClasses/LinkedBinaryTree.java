@@ -190,6 +190,27 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 		
 		return etr; 
 	}
+	
+	public LinkedBinaryTree<E> clone() throws CloneNotSupportedException { 
+		LinkedBinaryTree<E> other = new LinkedBinaryTree<>(); 
+		if (!isEmpty()) {
+			other.addRoot(root().getElement()); 
+		    cloneSubtree(root(), other, other.root()); 
+		}
+		return other; 
+	}
+	
+	private void cloneSubtree(Position<E> rThis, LinkedBinaryTree<E> other,
+			Position<E> rOther) {
+		if(this.hasLeft(rThis)) {
+			Position<E> pOther = other.addLeft(rOther, this.left(rThis).getElement());
+			cloneSubtree(this.left(rThis), other, pOther);
+		}
+		if(this.hasRight(rThis)) {
+			Position<E> pOther2 = other.addRight(rOther, this.right(rThis).getElement());
+			cloneSubtree(this.right(rThis), other, pOther2);
+		}
+	}
 
 	/**
 	 * SEE ALSO METHOD set in textbook. Work an implementation on your own, but not required

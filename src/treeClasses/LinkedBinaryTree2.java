@@ -13,7 +13,7 @@ public class LinkedBinaryTree2<E extends Comparable<E>> extends LinkedBinaryTree
 
 	private void recInsert(Position<E> r, E e) {
 		int c = e.compareTo(r.getElement()); 
-		if (c < 0) 
+		if (c > 0) 	//for exercise 6 i changed < to > to change the order of the tree
 			if (!hasLeft(r))
 				addLeft(r, e); 
 			else 
